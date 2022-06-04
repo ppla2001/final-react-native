@@ -9,36 +9,37 @@ import Search from "../screens/Search/Search";
 
 const Tab = createBottomTabNavigator();
 
-export default function TabNavigation() {
+export default function TabNavigation(props) {
+  console.log(props);
   return (
-    <NavigationContainer>
-      <Tab.Navigator screenOptions={{ tabBarShowLabel: false }}>
-        <Tab.Screen
-          name="Home"
-          component={Home}
-          options={{
-            tabBarIcon: () => <Entypo name="home" size={24} color="black" />,
-          }}
-        />
-        <Tab.Screen
-          name="Search"
-          component={Search}
-          options={{
-            tabBarIcon: () => (
-              <Ionicons name="search-circle" size={30} color="black" />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Profile"
-          component={Profile}
-          options={{
-            tabBarIcon: () => (
-              <Ionicons name="person" size={24} color="black" />
-            ),
-          }}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Tab.Navigator screenOptions={{ tabBarShowLabel: false }}>
+      <Tab.Screen
+        name="Home"
+        component={Home}
+        options={{
+          tabBarIcon: () => <Entypo name="home" size={24} color="black" />,
+        }}
+      />
+      <Tab.Screen
+        name="Search"
+        component={Search}
+        options={{
+          tabBarIcon: () => (
+            <Ionicons name="search-circle" size={30} color="black" />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          tabBarIcon: () => <Ionicons name="person" size={24} color="black" />,
+        }}
+        initialParams={{
+          logout: (email, password) =>
+            props.route.params.logout(email, password),
+        }}
+      />
+    </Tab.Navigator>
   );
 }

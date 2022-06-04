@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
-import { auth } from "../../firebase/config";
 
 export default class Register extends Component {
   constructor(props) {
@@ -15,19 +14,7 @@ export default class Register extends Component {
       email: "",
       password: "",
       username: "",
-      Logged: false,
     };
-  }
-
-  register(email, password) {
-    auth
-      .createUserWithEmailAndPassword(email, password)
-      .then(
-        (response) => console.log(response),
-        this.setState({ Logged: true }),
-        () => console.log(this.state)
-      )
-      .catch((e) => console.log(e));
   }
 
   render() {
@@ -55,9 +42,19 @@ export default class Register extends Component {
         ></TextInput>
         <TouchableOpacity
           style={styles.btn}
-          onPress={() => this.register(this.state.email, this.state.password)}
+          onPress={() =>
+            this.props.route.params.register(
+              this.state.email,
+              this.state.password
+            )
+          }
         >
           <Text style={styles.btnTxt}> Register </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate("Login")}
+        >
+          <Text> Iniciar sesion</Text>
         </TouchableOpacity>
       </View>
     );
