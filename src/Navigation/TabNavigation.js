@@ -6,6 +6,7 @@ import { Ionicons } from "@expo/vector-icons";
 import Home from "../screens/Home/Home";
 import Profile from "../screens/Profile/Profile";
 import Search from "../screens/Search/Search";
+import Messages from "../screens/Messages/Messages";
 
 const Tab = createBottomTabNavigator();
 
@@ -18,6 +19,16 @@ export default function TabNavigation(props) {
         component={Home}
         options={{
           tabBarIcon: () => <Entypo name="home" size={24} color="black" />,
+        }}
+      />
+      <Tab.Screen
+        name="Messages"
+        component={Messages}
+        options={{
+          tabBarIcon: () => <Entypo name="message" size={24} color="black" />,
+        }}
+        initialParams={{
+          newMessage: (message) => props.route.params.newMessage(message),
         }}
       />
       <Tab.Screen
