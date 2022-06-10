@@ -11,7 +11,7 @@ import Messages from "../screens/Messages/Messages";
 const Tab = createBottomTabNavigator();
 
 export default function TabNavigation(props) {
-  console.log(props);
+  // console.log(props);
   return (
     <Tab.Navigator screenOptions={{ tabBarShowLabel: false }}>
       <Tab.Screen

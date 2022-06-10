@@ -21,11 +21,15 @@ export default class Messages extends Component {
         <Text>Nuevo Mensaje</Text>
         <TextInput
           onChangeText={(text) => this.setState({ message: text })}
+          value={this.state.message}
           style={styles.textField}
         ></TextInput>
         <TouchableOpacity
           style={styles.btn}
-          onPress={() => this.props.route.params.newMessage(this.state.message)}
+          onPress={() => {
+            this.props.route.params.newMessage(this.state.message),
+              this.setState({ message: "" });
+          }}
         >
           <Text style={styles.btnTxt}>Enviar Mensaje</Text>
         </TouchableOpacity>
