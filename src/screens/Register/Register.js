@@ -18,13 +18,15 @@ export default class Register extends Component {
   }
 
   render() {
+    console.log(this.props.errorMessageRegister);
     return (
       <View style={styles.constainer}>
         <Text> Register </Text>
+
         <TextInput
           style={styles.textField}
           keyboardType="default"
-          placeholder="Username"
+          placeholder="username"
           onChangeText={(text) => this.setState({ username: text })}
         ></TextInput>
         <TextInput
@@ -43,9 +45,10 @@ export default class Register extends Component {
         <TouchableOpacity
           style={styles.btn}
           onPress={() =>
-            this.props.route.params.register(
+            this.props.register(
               this.state.email,
-              this.state.password
+              this.state.password,
+              this.state.username
             )
           }
         >

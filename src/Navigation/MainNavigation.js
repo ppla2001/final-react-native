@@ -13,6 +13,7 @@ export default class MainNavigation extends Component {
     super(props);
     this.state = {
       Logged: false,
+      errorMessageRegister: "",
     };
   }
 
@@ -31,11 +32,21 @@ export default class MainNavigation extends Component {
       .catch((e) => console.log(e));
   }
 
-  register(email, password) {
+  register(email, password, username) {
     auth
       .createUserWithEmailAndPassword(email, password)
+      .then(() =>
+        db
+          .collection("users")
+          .add({
+            owner: email,
+            name: username,
+            createdAt: Date.now(),
+          })
+          .catch((e) => console.log(e))
+      )
       .then((response) => this.setState({ Logged: true }))
-      .catch((e) => console.log(e));
+      .catch((e) => this.setState({ errorMessageRegister: e.message }));
   }
 
   logout() {
@@ -82,7 +93,15 @@ export default class MainNavigation extends Component {
               ></Stack.Screen>
               <Stack.Screen
                 name="Register"
-                component={Register}
+                children={(props) => (
+                  <Register
+                    register={(email, password, username) =>
+                      this.register(email, password, username)
+                    }
+                    errorMessageRegister={this.state.errorMessageRegister}
+                    {...props}
+                  ></Register>
+                )}
                 options={{ headerShown: false }}
                 initialParams={{
                   register: (email, password) => this.register(email, password),
