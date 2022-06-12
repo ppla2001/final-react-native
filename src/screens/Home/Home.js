@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, FlatList, ActivityIndicator } from "react-native";
 import { db } from "../../firebase/config";
-
+import Message from "../../components/Message/Message";
 export default class Home extends Component {
   constructor(props) {
     super(props);
@@ -40,7 +40,7 @@ export default class Home extends Component {
           <FlatList
             data={this.state.data}
             keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => <Text>{item.data.message}</Text>}
+            renderItem={({ item }) => <Message info={item}></Message>}
           ></FlatList>
         ) : (
           <ActivityIndicator size={24} color="Black" />

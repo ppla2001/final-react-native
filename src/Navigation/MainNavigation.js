@@ -62,6 +62,8 @@ export default class MainNavigation extends Component {
         owner: auth.currentUser.email,
         createdAt: Date.now(),
         message: message,
+        likes: [],
+        comments: [],
       })
       .then((response) => console.log(response))
       .catch((e) => console.log(e));
