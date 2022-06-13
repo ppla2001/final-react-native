@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   messageOwner: {
-    fontWeight: 600,
+    fontWeight: "600",
   },
   messageText: {
     paddingLeft: 8,
