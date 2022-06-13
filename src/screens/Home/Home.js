@@ -40,7 +40,9 @@ export default class Home extends Component {
           <FlatList
             data={this.state.data}
             keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => <Message info={item}></Message>}
+            renderItem={({ item }) => (
+              <Message info={item} navigation={this.props.navigation}></Message>
+            )}
           ></FlatList>
         ) : (
           <ActivityIndicator size={24} color="Black" />

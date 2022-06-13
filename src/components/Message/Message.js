@@ -67,25 +67,36 @@ export default class Message extends Component {
   render() {
     const document = this.props.info.data;
     return (
-      <View style={styles.container}>
-        <View>
-          <Text style={styles.messageOwner}>{document.owner}</Text>
-          <Text style={styles.messageText}>{document.message}</Text>
-        </View>
+      <>
+        <View style={styles.container}>
+          <View>
+            <Text style={styles.messageOwner}>{document.owner}</Text>
+            <Text style={styles.messageText}>{document.message}</Text>
+          </View>
 
-        <View style={styles.containerLike}>
-          <Text style={styles.likesCounter}> {this.state.numLikes}</Text>
-          {this.state.myLike ? (
-            <TouchableOpacity onPress={() => this.unlike()}>
-              <FontAwesome name="heart" size={24} color="red" />
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity onPress={() => this.like()}>
-              <FontAwesome name="heart-o" size={24} color="black" />
-            </TouchableOpacity>
-          )}
+          <View style={styles.containerLike}>
+            <Text style={styles.likesCounter}> {this.state.numLikes}</Text>
+            {this.state.myLike ? (
+              <TouchableOpacity onPress={() => this.unlike()}>
+                <FontAwesome name="heart" size={24} color="red" />
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity onPress={() => this.like()}>
+                <FontAwesome name="heart-o" size={24} color="black" />
+              </TouchableOpacity>
+            )}
+          </View>
         </View>
-      </View>
+        <TouchableOpacity
+          onPress={() =>
+            this.props.navigation.navigate("Comments", {
+              id: this.props.info.id,
+            })
+          }
+        >
+          <Text>Comentar</Text>
+        </TouchableOpacity>
+      </>
     );
   }
 }
