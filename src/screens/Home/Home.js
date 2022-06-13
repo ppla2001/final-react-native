@@ -18,24 +18,26 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
-    db.collection("messages").onSnapshot((docs) => {
-      const messages = [];
+    db.collection("messages")
+      .orderBy("createdAt", "desc")
+      .onSnapshot((docs) => {
+        const messages = [];
 
-      docs.forEach((e) => {
-        messages.push({
-          id: e.id,
-          data: e.data(),
+        docs.forEach((e) => {
+          messages.push({
+            id: e.id,
+            data: e.data(),
+          });
         });
-      });
 
-      this.setState(
-        {
-          data: messages,
-          loading: false,
-        },
-        () => console.log(this.state.data)
-      );
-    });
+        this.setState(
+          {
+            data: messages,
+            loading: false,
+          },
+          () => console.log(this.state.data)
+        );
+      });
   }
 
   render() {
