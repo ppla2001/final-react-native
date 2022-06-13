@@ -14,7 +14,9 @@ export default class Messages extends Component {
       message: "",
     };
   }
-
+  componentDidMount() {
+    console.log(this.props);
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -28,7 +30,8 @@ export default class Messages extends Component {
           style={styles.btn}
           onPress={() => {
             this.props.route.params.newMessage(this.state.message),
-              this.setState({ message: "" });
+              this.setState({ message: "" }),
+              this.props.navigation.navigate("Home");
           }}
         >
           <Text style={styles.btnTxt}>Enviar Mensaje</Text>

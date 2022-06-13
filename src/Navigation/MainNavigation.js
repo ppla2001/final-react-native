@@ -88,7 +88,7 @@ export default class MainNavigation extends Component {
               <Stack.Screen
                 name="Comments"
                 component={Comments}
-                options={{ headerShown: false }}
+                // options={{ headerShown: false }}
                 initialParams={{
                   newComment: (message) => this.newComment(message),
                 }}
@@ -99,7 +99,7 @@ export default class MainNavigation extends Component {
               <Stack.Screen
                 name="Login"
                 component={Login}
-                options={{ headerShown: false }}
+                // options={{ headerShown: false }}
                 initialParams={{
                   login: (email, password) => this.login(email, password),
                 }}
@@ -115,7 +115,7 @@ export default class MainNavigation extends Component {
                     {...props}
                   ></Register>
                 )}
-                options={{ headerShown: false }}
+                // options={{ headerShown: false }}
                 initialParams={{
                   register: (email, password) => this.register(email, password),
                 }}

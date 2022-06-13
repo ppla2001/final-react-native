@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { View, Text, FlatList, ActivityIndicator } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  ActivityIndicator,
+  StyleSheet,
+} from "react-native";
 import { db } from "../../firebase/config";
 import Message from "../../components/Message/Message";
 export default class Home extends Component {
@@ -34,7 +40,7 @@ export default class Home extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text>Home</Text>
         {!this.state.loading ? (
           <FlatList
@@ -51,3 +57,9 @@ export default class Home extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
